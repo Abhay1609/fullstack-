@@ -5,7 +5,7 @@ from rest_framework_simplejwt.views import (
     TokenVerifyView,
 )
 
-from .views import PostListCreateAPIView, PostDetailAPIView, PostLikeAPIView, PostDislikeAPIView, SignInView, SignOutView,SignUpView,PostUserAPIView
+from .views import PostListCreateAPIView, PostDetailAPIView, PostLikeAPIView, PostDislikeAPIView, SignInView,SignUpView,PostUserAPIView
 
 urlpatterns = [
     path('posts/', PostListCreateAPIView.as_view(), name='post-list-create'),
@@ -17,6 +17,6 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path('login/', SignInView.as_view(), name='signin'),
-    path('signout/', SignOutView.as_view(), name='signout'),
+
     path('signup/',SignUpView.as_view(),name='signUp'),
 ]

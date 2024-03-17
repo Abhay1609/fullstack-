@@ -1,36 +1,4 @@
-# from django.shortcuts import render
 
-# # Create your views here.
-# from rest_framework.views import APIView
-# from rest_framework.response import Response
-# from rest_framework import status
-# from rest_framework.permissions import IsAuthenticated
-# from rest_framework_simplejwt.authentication import JWTAuthentication
-# from .models import Post
-
-# class PostLikeAPIView(APIView):
-#     authentication_classes = [JWTAuthentication]
-#     permission_classes = [IsAuthenticated]
-
-#     def post(self, request, pk):
-#         try:
-#             post = Post.objects.get(pk=pk)
-#             post.likes.add(request.user)
-#             return Response({'message': 'Post liked successfully'}, status=status.HTTP_200_OK)
-#         except Post.DoesNotExist:
-#             return Response({'error': 'Post not found'}, status=status.HTTP_404_NOT_FOUND)
-
-# class PostDislikeAPIView(APIView):
-#     authentication_classes = [JWTAuthentication]
-#     permission_classes = [IsAuthenticated]
-
-#     def post(self, request, pk):
-#         try:
-#             post = Post.objects.get(pk=pk)
-#             post.dislikes.add(request.user)
-#             return Response({'message': 'Post disliked successfully'}, status=status.HTTP_200_OK)
-#         except Post.DoesNotExist:
-#             return Response({'error': 'Post not found'}, status=status.HTTP_404_NOT_FOUND)
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -46,6 +14,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.shortcuts import get_object_or_404
+#to get all post/event and create new posts/event
 class PostListCreateAPIView(APIView):
 
 
@@ -58,47 +27,43 @@ class PostListCreateAPIView(APIView):
         authentication_classes = [JWTAuthentication]
         permission_classes = [IsAuthenticated]
         try:
-            # Create a serializer instance with the request data
-            serializer = PostSerializer(data=request.data)
          
-            # Check if the data is valid
+            serializer = PostSerializer(data=request.data)
+  
             if serializer.is_valid():
-                # Save the serializer data with the authenticated user as the author
+
                 serializer.save(author=request.user)
-                # Return a success response with the serialized data
+
                 print(serializer.data)
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
-#             time
-# : 
-# "2024-03-12T18:00:00Z"
+
             else:
-                # Return an error response with the serializer errors
+
              
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
         except ValidationError as e:
-            # If a ValidationError occurs, return an error response with the details
+  
             print(str(e))
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+    #to get all post/event of specific user
 class PostUserAPIView(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     
     def get(self, request, pk):
-        # Retrieve the user based on the provided ID (pk)
+
         user = get_object_or_404(User, pk=pk)
         
-        # Retrieve all posts associated with the user
+
         posts = Post.objects.filter(author=pk)
-        
-        # Serialize the posts data
+
         serializer = PostSerializer(posts, many=True)
-        
-        # Return the serialized data as a JSON response
+
         return Response(serializer.data, status=status.HTTP_200_OK)
         
 
-   
+ #use to get datail of specific post and allow to update and delete events  
 class PostDetailAPIView(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
@@ -132,7 +97,7 @@ class PostDetailAPIView(APIView):
             post.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
         return Response({'error': 'Unauthorized'}, status=status.HTTP_401_UNAUTHORIZED)
-
+#it use handle like on evnet
 class PostLikeAPIView(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
@@ -141,7 +106,7 @@ class PostLikeAPIView(APIView):
         post = Post.objects.get(pk=pk)
         post.likes.add(request.user)
         return Response({'message': 'Post liked successfully'}, status=status.HTTP_200_OK)
-
+#it is use for handle dislike
 class PostDislikeAPIView(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
@@ -150,7 +115,7 @@ class PostDislikeAPIView(APIView):
         post = Post.objects.get(pk=pk)
         post.likes.remove(request.user)
         return Response({'message': 'Post disliked successfully'}, status=status.HTTP_200_OK)
-
+#it create token and allow login for user 
 class SignInView(APIView):
     def post(self, request):
         username = request.data.get('username')
@@ -173,20 +138,8 @@ class SignInView(APIView):
             'access': str(refresh.access_token),
         })
 
-class SignOutView(APIView):
-    def post(self, request):
-        refresh_token = request.data.get('refresh_token')
-        if refresh_token:
-            try:
-                refresh_token = str(refresh_token)
-                token = RefreshToken(refresh_token)
-                token.blacklist()
-            except Exception as e:
-                return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
-            return Response({'message': 'Successfully logged out'}, status=status.HTTP_200_OK)
-        else:
-            return Response({'error': 'Refresh token is required'}, status=status.HTTP_400_BAD_REQUEST)
 
+#allow new user to signUp with fields of username,email,password
 class SignUpView(APIView):
     def post(self, request):
         print(request.data)

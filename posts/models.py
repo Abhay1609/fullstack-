@@ -2,7 +2,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 def user_directory_path(instance, filename):
-    # File will be uploaded to MEDIA_ROOT/user_<id>/<filename>
+
     return 'author_{0}/{1}'.format(instance.author.id, filename)
 
 class Post(models.Model):
