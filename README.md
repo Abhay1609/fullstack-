@@ -75,11 +75,21 @@ The provided project is a full-stack application with features for event managem
 
 Include screenshots of the application to showcase its appearance and functionality. Leave space for the actual screenshots to be inserted later.
 
-1. [Screenshot 1 - Homepage](#)
-   ![Screenshot 1](#)
+1. [Screenshot 1 - Homepage Without Login](https://github.com/Abhay1609/fullstack-/assets/113366849/d388841f-3f25-4e78-8515-6cb4b84b16cf)
+   ![Screenshot 1](https://github.com/Abhay1609/fullstack-/assets/113366849/d388841f-3f25-4e78-8515-6cb4b84b16cf)
    
-2. [Screenshot 2 - Dashboard](#)
-   ![Screenshot 2](#)
+2. [Screenshot 2 - Homepage When Login](https://github.com/Abhay1609/fullstack-/assets/113366849/2b536966-9c21-4188-a74d-c2df611b8649)
+   ![Screenshot 2](https://github.com/Abhay1609/fullstack-/assets/113366849/2b536966-9c21-4188-a74d-c2df611b8649)
+3. [Screenshot 2 - Event of Specific User](https://github.com/Abhay1609/fullstack-/assets/113366849/7082e2fe-717d-41ce-97cc-759ebd30c801)
+   ![Screenshot 2](https://github.com/Abhay1609/fullstack-/assets/113366849/7082e2fe-717d-41ce-97cc-759ebd30c801)
+4. [Screenshot 2 - SignUp Page](https://github.com/Abhay1609/fullstack-/assets/113366849/9b8664ec-8728-47d5-87be-c853f29e4d90)
+   ![Screenshot 2](https://github.com/Abhay1609/fullstack-/assets/113366849/9b8664ec-8728-47d5-87be-c853f29e4d90)
+
+5. [Screenshot 2 - Login Page](https://github.com/Abhay1609/fullstack-/assets/113366849/cbe907c5-cb32-47c9-89e3-527ad00b44ce)
+   ![Screenshot 2](https://github.com/Abhay1609/fullstack-/assets/113366849/cbe907c5-cb32-47c9-89e3-527ad00b44ce)
+6. [Screenshot 2 - Add Events](https://github.com/Abhay1609/fullstack-/assets/113366849/a9172311-79af-4b09-bea0-64b1b86403a3)
+   ![Screenshot 2](https://github.com/Abhay1609/fullstack-/assets/113366849/a9172311-79af-4b09-bea0-64b1b86403a3)
+   
 
 ---
 
